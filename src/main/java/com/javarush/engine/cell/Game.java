@@ -191,9 +191,9 @@ public class Game extends Application implements GameScreen {
 		  this.toFXColor(com.javarush.engine.cell.Color.WHITE));
 	  scorePane.setLayoutX((double)(PADDING_SIDE + (this.width * cellSize - 1) >> 2));
 	} else {
-	  rectangle = new Rectangle((double) ((this.width * cellSize) >> 1), (double) scoreHeight,
+	  rectangle = new Rectangle((double) (this.width * cellSize >> 1), (double) scoreHeight,
 		  this.toFXColor(com.javarush.engine.cell.Color.WHITE));
-	  scorePane.setLayoutX((double) (124 + (this.width * cellSize) >> 2));
+	  scorePane.setLayoutX((double) (124 + (this.width * cellSize >> 2)));
 	}
 
 	scorePane.getChildren().add(0, rectangle);

@@ -19,37 +19,6 @@ public class RacerGame extends Game {
   private ProgressBar progressBar;
   private boolean isGameStopped;
 
-  @Override
-  public void onTurn(int step) {
-	if (roadManager.checkCrush(player)) {
-	  gameOver();
-	} else if (finishLine.isCrossed(player)) {
-	  win();
-	} else {
-	  roadManager.generateNewRoadObjects(this);
-	  if (roadManager.getPassedCarsCount() >= RACE_GOAL_CARS_COUNT) {
-		finishLine.show();
-	  }
-	  score -= 5;
-	  setScore(score);
-	  moveAll();
-	}
-	drawScene();
-  }
-
-  @Override
-  public void onKeyPress(Key key) {
-	if (key == Key.RIGHT) {
-	  player.setDirection(Direction.RIGHT);
-	} else if (key == Key.LEFT) {
-	  player.setDirection(Direction.LEFT);
-	} else if (key == Key.SPACE && isGameStopped) {
-	  createGame();
-	} else if (key == Key.UP) {
-	  player.speed = 2;
-	}
-  }
-
   private void moveAll() {
 	roadManager.move(player.speed);
 	roadMarking.move(player.speed);
@@ -115,6 +84,38 @@ public class RacerGame extends Game {
 	  for (int j = 0; j < HEIGHT; j++) {
 		setCellColor(i, j, Color.DIMGREY);
 	  }
+	}
+  }
+
+
+  @Override
+  public void onTurn(int step) {
+	if (roadManager.checkCrush(player)) {
+	  gameOver();
+	} else if (finishLine.isCrossed(player)) {
+	  win();
+	} else {
+	  roadManager.generateNewRoadObjects(this);
+	  if (roadManager.getPassedCarsCount() >= RACE_GOAL_CARS_COUNT) {
+		finishLine.show();
+	  }
+	  score -= 5;
+	  setScore(score);
+	  moveAll();
+	}
+	drawScene();
+  }
+
+  @Override
+  public void onKeyPress(Key key) {
+	if (key == Key.RIGHT) {
+	  player.setDirection(Direction.RIGHT);
+	} else if (key == Key.LEFT) {
+	  player.setDirection(Direction.LEFT);
+	} else if (key == Key.SPACE && isGameStopped) {
+	  createGame();
+	} else if (key == Key.UP) {
+	  player.speed = 2;
 	}
   }
 
